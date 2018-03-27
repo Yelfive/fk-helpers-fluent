@@ -1,0 +1,9 @@
+{
+    "name": "fk/helpers-fluent",
+    "description": "Fluent helpers for PHP, such as array->merge->unique calling",
+    "autoload": {
+        "psr-4": {
+            "fk\\fluent": "./src"
+        }
+    }
+}
