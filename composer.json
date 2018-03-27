@@ -3,7 +3,7 @@
     "description": "Fluent helpers for PHP, such as array->merge->unique calling",
     "autoload": {
         "psr-4": {
-            "fk\\fluent": "./src"
+            "fk\\fluent\\": "./src"
         }
     }
 }
