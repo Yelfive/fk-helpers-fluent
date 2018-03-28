@@ -9,10 +9,10 @@ namespace fk\fluent;
 
 /**
  * @method FluentArray only(array | string $keys, mixed $default = null)
- * @method FluentArray merge(array[] ...$arrays)
+ * @method FluentArray merge(array [] ...$arrays)
  * @method FluentArray mergeTo(array $array)  Merges to one the given array, value of which is taken as default value
  * @method FluentArray each(callable $callback)
- * @method FluentArray push(mixed $item)  To push an item to the origin array
+ * @method FluentArray push(array ...$items)  To push items to the origin array
  */
 class FluentArray extends FluentAbstract
 {
@@ -30,7 +30,7 @@ class FluentArray extends FluentAbstract
     {
         $only = [];
         foreach ($keys as $key) {
-            $only[$key] = $data[$key] ?? $default;
+            $only[$key] = $this->data[$key] ?? $default;
         }
         return $only;
     }
@@ -64,11 +64,22 @@ class FluentArray extends FluentAbstract
     }
 
     /**
-     * To push an item to the origin array
-     * @param mixed $item
+     * To push items to the origin array
+     * @param array ...$items
      */
-    protected function fluentPush($item)
+    protected function fluentPush(...$items)
     {
+        array_push($this->data, ...$items);
+    }
+
+    public function keys()
+    {
+        return array_keys($this->data);
+    }
+
+    public function values()
+    {
+        return array_values($this->data);
     }
 
 }

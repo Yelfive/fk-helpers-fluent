@@ -44,7 +44,8 @@ abstract class FluentAbstract
     public function __call($name, $arguments)
     {
         if (method_exists($this, $method = 'fluent' . ucfirst($name))) {
-            $this->data = call_user_func_array([$this, $method], $arguments);
+            $new = call_user_func_array([$this, $method], $arguments);
+            if (is_array($new)) $this->data = $new;
             return $this;
         }
         throw new UndefinedMethodException($name);
